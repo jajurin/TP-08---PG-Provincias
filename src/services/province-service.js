@@ -9,12 +9,12 @@ export default class ProvinceService {
         return returnArray;
     }
 
-    getByIdAsync = async (id) => {
-      const repo = new ProvinceRepository();
-        const returnArray = await repo.getAllAsync();
-        return returnArray;
+  getByIdAsync = async (id) => {
 
-    }
+    const repo = new ProvinceRepository();
+    const province = await repo.getByIdAsync(id);
+    return province;
+}
     createAsync = async (entity) => {/* hacerlo */}
     updateAsync = async (entity) => {/* hacerlo */}
     deleteByIdAsync = async (id) => {/* hacerlo */}

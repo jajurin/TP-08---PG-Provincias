@@ -14,7 +14,14 @@ router.get('', async (req, res) => {
     return respuesta;
 });
 
-router.get('/:id', async (req, res) =>    {/* hacerlo */})
+router.get('/:id', async (req, res) =>    { let respuesta;
+    const province = await svc.getByIdAsync(req.params.id);
+    if (province != null){
+        respuesta = res.status(200).json(province);
+    } else {
+        respuesta = res.status(404).send(`Provincia no encontrada.`);
+    }
+    return respuesta;})
 router.post('', async (req, res) =>    {/* hacerlo */})
 router.put('', async (req, res) =>     {/* hacerlo */})
 router.delete('/:id', async (req, res) => {/* hacerlo */})
