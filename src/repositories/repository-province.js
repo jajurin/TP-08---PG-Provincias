@@ -65,5 +65,18 @@ export default class ProvinceRepository {
         return returnResult;
         
     }
-    deleteByIdAsync = async (id) => {/* hacerlo */}
+    deleteByIdAsync = async (idR) => { 
+        let returnResult = null;
+        const client = new Client(DBConfig);
+        try {
+            await client.connect();
+            const sql    = `DELETE FROM provinces WHERE id = $1 RETURNING *`;
+              const values = [idR];
+            const result = await client.query(sql, values);
+            await client.end();
+            returnResult = result.rows[0];
+        } catch (error) {
+            console.log(error);
+        }
+        return returnResult;}
 }
