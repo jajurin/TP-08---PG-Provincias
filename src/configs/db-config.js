@@ -1,7 +1,3 @@
-import pg from 'pg';
-
-const { Pool } = pg;
-
 const config = {
     user: "postgres",
     host: "localhost",
@@ -10,6 +6,4 @@ const config = {
     port: 5432,
 };
 
-const pool = new Pool(config);
-
-export default pool;
+export default config;
