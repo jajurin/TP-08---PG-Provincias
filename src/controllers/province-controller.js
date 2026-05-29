@@ -47,12 +47,13 @@ router.put('', async (req, res) =>     {  try {
     }})
 router.delete('/:id', async (req, res) => {    
     let respuesta;
-    const province = await svc.getByIdAsync(req.params.id);
-    if (province != null){
-        respuesta = res.status(200).json(province);
+    const deleted = await svc.deleteByIdAsync(req.params.id);
+    if (deleted != null){
+        respuesta = res.status(200).json(deleted);
     } else {
         respuesta = res.status(404).send(`Provincia no encontrada.`);
     }
+    
     return respuesta;
 })
 export default router;
