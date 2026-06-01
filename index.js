@@ -7,7 +7,7 @@ const port = 3000;      // El puerto 3000 (http://localhost:3000)
 
 // Agrego los Middlewares
 app.use(cors());           // Middleware de CORS.
-app.use(express.json());   // Middleware para parsear y comprender JSON.
+app.use(express.json());  // Middleware para parsear y comprender JSON.
 
 //
 // Endpoints (todos los Routers)

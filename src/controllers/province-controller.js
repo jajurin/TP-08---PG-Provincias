@@ -35,16 +35,23 @@ router.post('', async (req, res) =>     {
     }
     return respuesta;}
 )
-router.put('', async (req, res) =>     {  try {
+router.put('/:id', async (req, res) => {
+    try {
+        const data = {
+            ...req.body,
+            id: req.params.id
+        };
+        const province = await svc.updateAsync(data);
 
-        const province = await svc.updateAsync(req.body);
         if (province == null) {
             return res.status(404).send('Provincia no encontrada');
         }
-        return res.status(201).json(province);
+        return res.status(200).json(province);
+
     } catch (error) {
-        return res.status(400).send(`Mala solicitud.`);
-    }})
+        return res.status(400).send('Mala solicitud.');
+    }
+});
 router.delete('/:id', async (req, res) => {    
     let respuesta;
     const deleted = await svc.deleteByIdAsync(req.params.id);
