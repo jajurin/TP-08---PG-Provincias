@@ -1,6 +1,6 @@
 import DBConfig from './../configs/db-config.js';
 import pkg from 'pg';
-const { Client, Pool } = pkg;
+const { Client } = pkg;
 
 export default class ProvinceRepository {
     getAllAsync = async () => {
@@ -40,8 +40,8 @@ export default class ProvinceRepository {
         const client = new Client(DBConfig);
         try {
             await client.connect();
-            const sql    = `INSERT INTO province (id, name, full_name, latitude, longitude, display_order) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`;
-              const values = [entity.id, entity.name, entity.full_name, entity.latitude, entity.longitude, entity.display_order];
+            const sql    = `INSERT INTO province ( name, full_name, latitude, longitude, display_order) VALUES ($1, $2, $3, $4, $5) RETURNING *`;
+              const values = [ entity.name, entity.full_name, entity.latitude, entity.longitude, entity.display_order];
             const result = await client.query(sql, values);
             await client.end();
             returnResult = result.rows[0];

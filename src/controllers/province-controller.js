@@ -26,6 +26,7 @@ router.get('/:id', async (req, res) =>    {
 }
 )
 router.post('', async (req, res) =>     { 
+    
     let respuesta;
     const province = await svc.createAsync(req.body);
     if (province != null){
