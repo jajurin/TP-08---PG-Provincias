@@ -1,6 +1,7 @@
 import DBConfig from './../configs/db-config.js';
 import pkg from 'pg';
 const { Client } = pkg;
+import logHelper from '../helpers/log-helper.js';
 
 export default class ProvinceRepository {
     getAllAsync = async () => {
@@ -13,7 +14,7 @@ export default class ProvinceRepository {
             await client.end();
             returnArray = result.rows;
         } catch (error) {
-            console.log(error);
+            logHelper.logError(error);
         }
         return returnArray;
     }
@@ -30,7 +31,7 @@ export default class ProvinceRepository {
             await client.end();
             returnResult = result.rows[0];
         } catch (error) {
-            console.log(error);
+            logHelper.logError(error);
         }
         return returnResult;
 
@@ -46,7 +47,7 @@ export default class ProvinceRepository {
             await client.end();
             returnResult = result.rows[0];
         } catch (error) {
-            console.log(error);
+            logHelper.logError(error);
         }
         return returnResult;}
     updateAsync = async (entity) => {
@@ -60,7 +61,7 @@ export default class ProvinceRepository {
             await client.end();
             returnResult = result.rows[0];
         } catch (error) {
-            console.log(error);
+            logHelper.logError(error);
         }
         return returnResult;
         
@@ -76,7 +77,7 @@ export default class ProvinceRepository {
             await client.end();
             returnResult = result.rows[0];
         } catch (error) {
-            console.log(error);
+            logHelper.logError(error);
         }
         return returnResult;}
 }
