@@ -1,5 +1,5 @@
 import ProvinceRepository from '../repositories/repository-province.js';
-import Province from '../entities/province.js';
+import { validarProvincia } from '../helpers/validaciones-helper.js';
 
 
 export default class ProvinceService {
@@ -16,46 +16,20 @@ export default class ProvinceService {
     const province = await repo.getByIdAsync(id);
     return province;
 }
-        createAsync = async (body) => {
-    if (!body.name) {
-   throw new Error("El nombre es obligatorio.");
-            }
-            
-   if (!body.name || body.name.trim().length < 3) {
-        throw new Error("El nombre debe tener al menos 3 caracteres.");
-    }
-    if (body.latitude == null) {
-        throw new Error("La latitud es obligatoria.");
-    }
-    if (body.longitude == null) {
-        throw new Error("La longitud es obligatoria.");
-    }
+   createAsync = async (body) => {
+    validarProvincia(body);
     const repo = new ProvinceRepository();
-    const province = await repo.createAsync(body);
-
-    return province;
+    return await repo.createAsync(body);
 }
-updateAsync = async (body) => {  
-   const repo = new ProvinceRepository();
+updateAsync = async (body) => {
+    
+    const repo = new ProvinceRepository();
     const provinciaExistente = await repo.getByIdAsync(body.id);
     if (provinciaExistente == null) {
         return null;
     }
-     if (!body.name) {
-   throw new Error("El nombre es obligatorio.");
-            }
-    if (!body.name || body.name.trim().length < 3) {
-        throw new Error("El nombre debe tener al menos 3 caracteres.");
-    }
-    if (body.latitude == null) {
-        throw new Error("La latitud es obligatoria.");
-    }
-    if (body.longitude == null) {
-        throw new Error("La longitud es obligatoria.");
-    }
-    const province = await repo.updateAsync(body);
-
-    return province;
+    validarProvincia(body);
+    return await repo.updateAsync(body);
 }
     deleteByIdAsync = async (id) => {  
     const repo = new ProvinceRepository();
