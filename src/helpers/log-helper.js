@@ -8,6 +8,10 @@
     this.logToFileEnabled = process.env.LOG_TO_FILE_ENABLED.toLowerCase() === 'true';
     this.logToConsoleEnabled = process.env.LOG_TO_CONSOLE_ENABLED.toLowerCase() === 'true';
 
+    if (!fs.existsSync(this.filePath)) {
+        fs.mkdirSync(this.filePath, { recursive: true });
+    }
+
 }
 
         /**
