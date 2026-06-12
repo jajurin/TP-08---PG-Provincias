@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import ProvinceService from './../services/province-service.js'
 const router = Router();
-const svc   = new ProvinceService();  
+const svc = new ProvinceService();  
 
 router.get('', async (req, res) => {
     let respuesta;
@@ -28,9 +28,6 @@ router.get('/:id', async (req, res) =>    {
 router.post('', async (req, res) => {
     try {
         const province = await svc.createAsync(req.body);
-        if (province == null) {
-            return res.status(400).send('Mala solicitud.');
-        }
         return res.status(201).json(province);
 
     } catch (error) {
@@ -39,13 +36,9 @@ router.post('', async (req, res) => {
 }
 )
 ;
-router.put('/:id', async (req, res) => {
+router.put('', async (req, res) => {
     try {
-        const data = {
-            ...req.body,
-            id: req.params.id
-        };
-        const province = await svc.updateAsync(data);
+        const province = await svc.updateAsync(req.body);
         if (province == null) {
             return res.status(404).send('Provincia no encontrada.');
         }
