@@ -19,3 +19,16 @@ EJEMPLO CORRECTO DE INSERT/POST:
   "display_order": 1
 }
 Y PORFAVOR PONER EN JSON.
+
+.env(borrado por buenas practicas pero al ser un tp escolar lo ponemos aca la configuracion para ya tenerlo):
+DB_USER=postgres
+DB_HOST=localhost
+DB_NAME=postgres
+DB_PASSWORD=root
+DB_PORT=5432
+
+
+LOG_FILE_PATH=./modules/logs/
+LOG_FILE_NAME=errores.log
+LOG_TO_FILE_ENABLED=true
+LOG_TO_CONSOLE_ENABLED=true
